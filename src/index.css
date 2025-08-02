@@ -20,6 +20,8 @@ All colors MUST be HSL.
 
     --primary: 108 49% 37%;     /* Verde Tierra #3C8D2F */
     --primary-foreground: 44 73% 96%;
+    --cta-button: 14 88% 56%; /* #FF5722 */
+    --cta-button-foreground: 0 0% 100%;
 
     --secondary: 47 100% 48%;   /* Amarillo Maíz #F5B600 */
     --secondary-foreground: 0 0% 20%;

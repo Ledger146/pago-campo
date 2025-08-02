@@ -45,7 +45,8 @@ const Header = ({ onCtaClick }: HeaderProps) => {
           <div className="hidden md:block">
             <Button 
               onClick={onCtaClick}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6"
+              variant="cta"
+              className="px-6"
             >
               ¡Comienza Hoy Sin Internet!
             </Button>
@@ -88,7 +89,8 @@ const Header = ({ onCtaClick }: HeaderProps) => {
                     onCtaClick();
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                  variant="cta"
+                  className="w-full"
                 >
                   ¡Comienza Hoy!
                 </Button>

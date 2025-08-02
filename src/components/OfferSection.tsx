@@ -51,11 +51,12 @@ const OfferSection = ({ onCtaClick }: OfferSectionProps) => {
             </div>
 
             <div className="space-y-4 fade-in-up">
-              <Button
-                onClick={onCtaClick}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-xl px-12 py-6 h-auto"
-              >
+            <Button
+              onClick={onCtaClick}
+              variant="cta"
+              size="lg"
+              className="font-bold text-xl px-12 py-6 h-auto"
+            >
                 🌾 Empieza con PagoCampo hoy
               </Button>
               <p className="text-sm text-muted-foreground">
