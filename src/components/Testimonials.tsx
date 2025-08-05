@@ -1,26 +1,29 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { Quote, Star, ArrowLeft, ArrowRight, Leaf } from 'lucide-react';
+import donSegundoAvatar from '@/assets/don-segundo-avatar.jpg';
+import mariaLuzAvatar from '@/assets/maria-luz-avatar.jpg';
+import carlosMendozaAvatar from '@/assets/carlos-mendoza-avatar.jpg';
 
 const testimonials = [
   {
     name: "Don Segundo",
     role: "Productor de cacao en Satipo",
-    avatar: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=150&h=150&fit=crop&crop=face",
+    avatar: donSegundoAvatar,
     rating: 5,
     text: "Antes llevaba 200 mil soles en una bolsa… ahora con PagoCampo todo es más seguro.",
   },
   {
     name: "María Luz",
     role: "Caficultora en Jaén",
-    avatar: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=150&h=150&fit=crop&crop=face",
+    avatar: mariaLuzAvatar,
     rating: 5,
     text: "No necesito ir al banco. Pago a mis proveedores desde mi celular.",
   },
   {
     name: "Carlos Mendoza",
     role: "Agricultor en Huánuco",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    avatar: carlosMendozaAvatar,
     rating: 5,
     text: "Mi familia ya no se preocupa cuando voy a vender la cosecha. PagoCampo nos da tranquilidad.",
   },
