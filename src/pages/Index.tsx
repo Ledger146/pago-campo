@@ -5,6 +5,7 @@ import ValueProposition from "@/components/ValueProposition";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import Differentiators from "@/components/Differentiators";
+import ComparisonTable from "@/components/ComparisonTable";
 import Testimonials from "@/components/Testimonials";
 import OfferSection from "@/components/OfferSection";
 import FAQ from "@/components/FAQ";
@@ -31,6 +32,7 @@ const Index = () => {
         <ProblemSection />
         <SolutionSection />
         <Differentiators />
+        <ComparisonTable />
         <Testimonials />
         <OfferSection onCtaClick={handleCtaClick} />
         <FAQ />
