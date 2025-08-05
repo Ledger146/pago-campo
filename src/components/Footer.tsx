@@ -74,7 +74,7 @@ const Footer = () => {
 
         <div className="border-t border-accent-foreground/20 mt-8 pt-8 text-center">
           <p className="text-accent-foreground/60 text-sm">
-            © 2024 PagoCampo. Todos los derechos reservados.
+            © 2025 PagoCampo. Todos los derechos reservados.
           </p>
         </div>
       </div>

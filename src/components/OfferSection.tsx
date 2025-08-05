@@ -23,45 +23,65 @@ const OfferSection = ({ onCtaClick }: OfferSectionProps) => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-br from-secondary/10 to-primary/10">
-      <div className="container-max">
-        <Card className="border-secondary/30 bg-background/80 backdrop-blur-sm">
+    <section className="section-padding bg-gradient-to-br from-primary/20 via-secondary/15 to-primary/10 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondary rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container-max relative">
+        <Card className="border-2 border-primary/30 bg-gradient-to-br from-background via-background/95 to-primary/5 backdrop-blur-sm shadow-2xl">
           <CardContent className="p-8 md:p-12 text-center space-y-8">
             <div className="space-y-4 fade-in-up">
-              <div className="text-4xl mb-4">🎁</div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Oferta especial de lanzamiento
+              <div className="text-6xl mb-4 animate-bounce">🎁</div>
+              <div className="inline-block bg-primary/20 text-primary font-bold px-6 py-2 rounded-full text-sm uppercase tracking-wide mb-4">
+                Oferta Especial de Lanzamiento
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+                Regístrate <span className="text-primary">gratis</span> y recibe
+                <br />
+                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  beneficios exclusivos
+                </span>
               </h2>
-              <p className="text-xl text-muted-foreground">
-                Regístrate gratis y recibe beneficios exclusivos
+              <p className="text-xl text-muted-foreground font-medium">
+                ¡Solo por tiempo limitado para los primeros agricultores!
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 fade-in-up">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center space-x-3 justify-center md:justify-start">
-                  <div className="w-10 h-10 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="h-5 w-5 text-secondary" />
+                <div key={index} className="group p-4 rounded-xl bg-gradient-to-br from-secondary/10 to-primary/5 border border-secondary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:scale-105">
+                  <div className="flex items-center space-x-3 justify-center md:justify-start">
+                    <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow">
+                      <benefit.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="font-semibold text-foreground text-lg">
+                      {benefit.text}
+                    </span>
                   </div>
-                  <span className="font-medium text-foreground">
-                    {benefit.text}
-                  </span>
                 </div>
               ))}
             </div>
 
-            <div className="space-y-4 fade-in-up">
-            <Button
-              onClick={onCtaClick}
-              variant="cta"
-              size="lg"
-              className="font-bold text-xl px-12 py-6 h-auto"
-            >
-                🌾 Empieza con PagoCampo hoy
-              </Button>
-              <p className="text-sm text-muted-foreground">
-                Sin internet. Sin bancos. Sin riesgos.
-              </p>
+            <div className="space-y-6 fade-in-up">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-75"></div>
+                <Button
+                  onClick={onCtaClick}
+                  variant="cta"
+                  size="lg"
+                  className="relative font-bold text-2xl px-16 py-8 h-auto rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+                >
+                  🌾 Empieza con PagoCampo hoy
+                </Button>
+              </div>
+              <div className="bg-background/80 rounded-lg p-4 border border-primary/20">
+                <p className="text-base font-semibold text-foreground">
+                  ✅ Sin internet • ✅ Sin bancos • ✅ Sin riesgos
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>

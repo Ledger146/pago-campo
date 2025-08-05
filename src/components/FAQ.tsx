@@ -29,7 +29,7 @@ const FAQ = () => {
     },
     {
       question: "¿Cuánto cuesta usar PagoCampo?",
-      answer: "Los primeros 5 pagos son gratis. Después, cobramos una pequeña comisión de 1.5% por transacción, mucho menor que otros servicios.",
+      answer: "Los primeros 5 pagos son gratis. Después, cobramos una pequeña comisión de 1.5% por transacción, mucho menor que otros servicios. Por ejemplo: si envías S/ 50,000, pagas solo S/ 750 de comisión.",
     },
   ];
 
