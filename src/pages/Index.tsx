@@ -11,6 +11,7 @@ import OfferSection from "@/components/OfferSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LeadModal from "@/components/LeadModal";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +40,7 @@ const Index = () => {
       </main>
       <Footer />
       <LeadModal isOpen={isModalOpen} onClose={handleModalClose} />
+      <WhatsAppButton />
     </div>
   );
 };
