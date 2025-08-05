@@ -57,7 +57,7 @@ const ComparisonTable = () => {
     value ? (
       <Check className="w-6 h-6 text-primary mx-auto" />
     ) : (
-      <X className="w-6 h-6 text-muted-foreground mx-auto" />
+      <X className="w-6 h-6 text-red-600 mx-auto" />
     )
   );
 
