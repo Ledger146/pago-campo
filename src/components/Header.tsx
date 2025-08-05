@@ -29,12 +29,12 @@ const Header = ({ onCtaClick }: HeaderProps) => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium whitespace-nowrap"
               >
                 {item.name}
               </a>
@@ -42,11 +42,11 @@ const Header = ({ onCtaClick }: HeaderProps) => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:block ml-6 lg:ml-8">
             <Button 
               onClick={onCtaClick}
               variant="cta"
-              className="px-6"
+              className="px-4 lg:px-6 text-sm lg:text-base"
             >
               ¡Comienza Hoy Sin Internet!
             </Button>
