@@ -119,15 +119,16 @@ const VideoSection = () => {
                 <X className="h-4 w-4" />
               </Button>
               
-              {/* Animación de Animaker */}
+              {/* Video de YouTube */}
               <div className="aspect-video bg-black">
                 <iframe
-                  src="https://app.animaker.com/animo/daR0GTJXksgxWO4b/"
+                  src="https://www.youtube.com/embed/qriSRxmKJ-s"
                   width="100%"
                   height="100%"
                   style={{ border: 'none' }}
-                  title="PagoCampo - Animación Explicativa"
-                  allow="autoplay; fullscreen"
+                  title="PagoCampo - Video Explicativo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
                   className="w-full h-full"
                 />
               </div>
