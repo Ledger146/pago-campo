@@ -31,21 +31,104 @@ const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Validaciones del frontend
+    if (!formData.name.trim()) {
+      toast({
+        title: "Nombre requerido",
+        description: "Por favor, ingresa tu nombre completo.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      toast({
+        title: "Email requerido", 
+        description: "Por favor, ingresa un correo electrónico válido.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      toast({
+        title: "Teléfono requerido",
+        description: "Por favor, ingresa tu número de celular.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Email inválido",
+        description: "Por favor, ingresa un correo electrónico válido (ejemplo: tu@email.com).",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validar formato de teléfono (números, espacios, + permitidos)
+    const phoneRegex = /^[\+]?[\d\s\-\(\)]{9,15}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      toast({
+        title: "Teléfono inválido",
+        description: "Por favor, ingresa un número de teléfono válido (ejemplo: +51 999 999 999).",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
+      console.log('Intentando registrar usuario:', formData);
+      
       // Insertar en la tabla usuarios de Supabase
-      const { error } = await supabase
+      const { error, data } = await supabase
         .from('usuarios')
         .insert([
           {
-            nombre: formData.name,
-            email: formData.email,
-            telefono: formData.phone,
+            nombre: formData.name.trim(),
+            email: formData.email.toLowerCase().trim(),
+            telefono: formData.phone.trim(),
           }
-        ]);
+        ])
+        .select();
 
       if (error) {
-        throw error;
+        console.error('Error detallado de Supabase:', error);
+        
+        // Manejar errores específicos
+        if (error.code === '23505') {
+          toast({
+            title: "Usuario ya registrado",
+            description: "Este email ya está registrado. ¿Ya tienes una cuenta?",
+            variant: "destructive"
+          });
+        } else if (error.message.includes('violates check constraint')) {
+          toast({
+            title: "Datos inválidos",
+            description: "Verifica que todos los campos estén completos y en el formato correcto.",
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Error de conexión",
+            description: `No se pudo conectar a la base de datos. Error: ${error.message}`,
+            variant: "destructive"
+          });
+        }
+        setIsSubmitting(false);
+        return;
       }
+
+      console.log('Usuario registrado exitosamente:', data);
 
       // Registrar evento en la tabla eventos
       await supabase
@@ -70,10 +153,10 @@ const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
       setFormData({ name: "", email: "", phone: "" });
       onClose();
     } catch (error) {
-      console.error('Error al registrar usuario:', error);
+      console.error('Error inesperado al registrar usuario:', error);
       toast({
-        title: "Error al registrar",
-        description: "Hubo un problema. Por favor, inténtalo de nuevo.",
+        title: "Error inesperado",
+        description: "Ocurrió un problema inesperado. Por favor, verifica tu conexión a internet e inténtalo de nuevo.",
         variant: "destructive"
       });
     } finally {

@@ -17,32 +17,82 @@ const NewsletterSignup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
+    
+    // Validaciones del frontend
+    if (!name.trim()) {
+      toast({
+        title: "Nombre requerido",
+        description: "Por favor, ingresa tu nombre completo.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!email.trim()) {
+      toast({
+        title: "Email requerido",
+        description: "Por favor, ingresa un correo electrónico válido.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Email inválido",
+        description: "Por favor, ingresa un correo electrónico válido (ejemplo: tu@email.com).",
+        variant: "destructive"
+      });
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
+      console.log('Intentando registrar usuario en newsletter:', { name, email });
+      
       // Insertar en la tabla usuarios de Supabase
-      const { error: userError } = await supabase
+      const { error: userError, data } = await supabase
         .from('usuarios')
         .insert([
           {
-            nombre: name,
-            email: email,
+            nombre: name.trim(),
+            email: email.toLowerCase().trim(),
             telefono: null, // No se solicita teléfono en newsletter
           }
-        ]);
+        ])
+        .select();
 
       if (userError) {
-        throw userError;
+        console.error('Error detallado de Supabase:', userError);
+        
+        // Manejar errores específicos
+        if (userError.code === '23505') {
+          toast({
+            title: "Email ya registrado",
+            description: "Este email ya está registrado. Procederemos con la descarga de la guía.",
+          });
+        } else {
+          toast({
+            title: "Error de conexión",
+            description: `No se pudo conectar a la base de datos. Error: ${userError.message}`,
+            variant: "destructive"
+          });
+          setIsSubmitting(false);
+          return;
+        }
       }
+
+      console.log('Usuario registrado exitosamente:', data);
 
       // Registrar descarga en la tabla descargas
       const { error: downloadError } = await supabase
         .from('descargas')
         .insert([
           {
-            email: email,
+            email: email.toLowerCase().trim(),
             guia: 'Guia-Completa-PagoCampo'
           }
         ]);
@@ -85,10 +135,10 @@ const NewsletterSignup = () => {
       setName("");
       setAcceptsNewsletter(false);
     } catch (error) {
-      console.error('Error al registrar usuario:', error);
+      console.error('Error inesperado al registrar usuario:', error);
       toast({
-        title: "Error",
-        description: "Hubo un problema. Inténtalo de nuevo.",
+        title: "Error inesperado",
+        description: "Ocurrió un problema inesperado. Por favor, verifica tu conexión a internet e inténtalo de nuevo.",
         variant: "destructive"
       });
     } finally {
