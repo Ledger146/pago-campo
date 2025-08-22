@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Download } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState("");
@@ -21,8 +22,50 @@ const NewsletterSignup = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call to Supabase
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Insertar en la tabla usuarios de Supabase
+      const { error: userError } = await supabase
+        .from('usuarios')
+        .insert([
+          {
+            nombre: name,
+            email: email,
+            telefono: null, // No se solicita teléfono en newsletter
+          }
+        ]);
+
+      if (userError) {
+        throw userError;
+      }
+
+      // Registrar descarga en la tabla descargas
+      const { error: downloadError } = await supabase
+        .from('descargas')
+        .insert([
+          {
+            email: email,
+            guia: 'Guia-Completa-PagoCampo'
+          }
+        ]);
+
+      if (downloadError) {
+        console.warn('Error al registrar descarga:', downloadError);
+      }
+
+      // Registrar evento
+      await supabase
+        .from('eventos')
+        .insert([
+          {
+            tipo: 'descarga_guia',
+            metadata: {
+              source: 'newsletter_signup',
+              nombre: name,
+              email: email,
+              acepta_newsletter: acceptsNewsletter,
+              guia: 'Guia-Completa-PagoCampo'
+            }
+          }
+        ]);
       
       // Trigger PDF download
       const pdfUrl = "/guia-pagocampo.pdf"; // Will need to add this PDF
@@ -42,6 +85,7 @@ const NewsletterSignup = () => {
       setName("");
       setAcceptsNewsletter(false);
     } catch (error) {
+      console.error('Error al registrar usuario:', error);
       toast({
         title: "Error",
         description: "Hubo un problema. Inténtalo de nuevo.",

@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Leaf } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -30,17 +31,54 @@ const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Insertar en la tabla usuarios de Supabase
+      const { error } = await supabase
+        .from('usuarios')
+        .insert([
+          {
+            nombre: formData.name,
+            email: formData.email,
+            telefono: formData.phone,
+          }
+        ]);
 
-    toast({
-      title: "¡Registro exitoso! 🌾",
-      description: "Te contactaremos pronto para ayudarte a comenzar con PagoCampo.",
-    });
+      if (error) {
+        throw error;
+      }
 
-    setFormData({ name: "", email: "", phone: "" });
-    setIsSubmitting(false);
-    onClose();
+      // Registrar evento en la tabla eventos
+      await supabase
+        .from('eventos')
+        .insert([
+          {
+            tipo: 'registro_nuevo_usuario',
+            metadata: {
+              source: 'lead_modal',
+              nombre: formData.name,
+              email: formData.email,
+              telefono: formData.phone
+            }
+          }
+        ]);
+
+      toast({
+        title: "¡Registro exitoso! 🌾",
+        description: "Te contactaremos pronto para ayudarte a comenzar con PagoCampo.",
+      });
+
+      setFormData({ name: "", email: "", phone: "" });
+      onClose();
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      toast({
+        title: "Error al registrar",
+        description: "Hubo un problema. Por favor, inténtalo de nuevo.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
