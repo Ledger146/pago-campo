@@ -12,6 +12,11 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LeadModal from "@/components/LeadModal";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import TrustCounter from "@/components/TrustCounter";
+import PaymentDemo from "@/components/PaymentDemo";
+import VideoSection from "@/components/VideoSection";
+import ExpandedUseCases from "@/components/ExpandedUseCases";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,12 +34,17 @@ const Index = () => {
       <Header onCtaClick={handleCtaClick} />
       <main>
         <Hero onCtaClick={handleCtaClick} />
+        <TrustCounter />
         <ValueProposition />
+        <VideoSection />
+        <PaymentDemo />
         <ProblemSection />
         <SolutionSection />
+        <ExpandedUseCases />
         <Differentiators />
         <ComparisonTable />
         <Testimonials />
+        <NewsletterSignup />
         <OfferSection onCtaClick={handleCtaClick} />
         <FAQ />
       </main>
