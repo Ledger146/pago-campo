@@ -119,22 +119,17 @@ const VideoSection = () => {
                 <X className="h-4 w-4" />
               </Button>
               
-              {/* Placeholder for actual video */}
-              <div className="aspect-video bg-black flex items-center justify-center">
-                <div className="text-center text-white space-y-4">
-                  <div className="text-6xl">🎬</div>
-                  <h3 className="text-2xl font-semibold">Video Demo de PagoCampo</h3>
-                  <p className="text-white/80 max-w-md mx-auto">
-                    Aquí iría el video real mostrando cómo funciona PagoCampo paso a paso.
-                    Por ahora es un placeholder que puedes reemplazar con tu video de YouTube, Vimeo, o archivo local.
-                  </p>
-                  <div className="bg-white/10 rounded-lg p-4 max-w-sm mx-auto">
-                    <p className="text-sm">
-                      💡 <strong>Consejo:</strong> Reemplaza este contenido con un iframe de YouTube/Vimeo 
-                      o un elemento &lt;video&gt; con tu archivo MP4.
-                    </p>
-                  </div>
-                </div>
+              {/* Animación de Animaker */}
+              <div className="aspect-video bg-black">
+                <iframe
+                  src="https://app.animaker.com/animo/daR0GTJXksgxWO4b/"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 'none' }}
+                  title="PagoCampo - Animación Explicativa"
+                  allow="autoplay; fullscreen"
+                  className="w-full h-full"
+                />
               </div>
             </div>
           </DialogContent>

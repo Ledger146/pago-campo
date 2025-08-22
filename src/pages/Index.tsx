@@ -17,6 +17,7 @@ import PaymentDemo from "@/components/PaymentDemo";
 import VideoSection from "@/components/VideoSection";
 import ExpandedUseCases from "@/components/ExpandedUseCases";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import CalendarEmbed from "@/components/CalendarEmbed";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,6 +46,7 @@ const Index = () => {
         <ComparisonTable />
         <Testimonials />
         <NewsletterSignup />
+        <CalendarEmbed />
         <OfferSection onCtaClick={handleCtaClick} />
         <FAQ />
       </main>

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
 
 const WhatsAppButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,8 +16,26 @@ const WhatsAppButton = () => {
     setIsModalOpen(true);
   };
 
-  const handleSendToWhatsApp = () => {
+  const handleSendToWhatsApp = async () => {
     if (!name.trim()) return;
+    
+    // Trackear evento de WhatsApp
+    try {
+      await supabase
+        .from('eventos')
+        .insert([
+          {
+            tipo: 'whatsapp_click',
+            metadata: {
+              nombre: name,
+              mensaje: message || 'Sin mensaje específico',
+              timestamp: new Date().toISOString()
+            }
+          }
+        ]);
+    } catch (error) {
+      console.error('Error al trackear evento WhatsApp:', error);
+    }
     
     const greeting = `¡Hola! Soy ${name}.`;
     const inquiry = message.trim() 

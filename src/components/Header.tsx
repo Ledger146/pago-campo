@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { Menu, X, Leaf } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Leaf, LogIn, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
+import { User as SupabaseUser } from "@supabase/supabase-js";
+import AuthModal from "./AuthModal";
 
 interface HeaderProps {
   onCtaClick: () => void;
@@ -8,6 +11,8 @@ interface HeaderProps {
 
 const Header = ({ onCtaClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
 
   const navigation = [
     { name: "Beneficios", href: "#beneficios" },
@@ -15,6 +20,31 @@ const Header = ({ onCtaClick }: HeaderProps) => {
     { name: "Testimonios", href: "#testimonios" },
     { name: "Preguntas Frecuentes", href: "#faq" },
   ];
+
+  useEffect(() => {
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleAuthSuccess = () => {
+    // User is now logged in
+    setIsAuthModalOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
 
   return (
     <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
@@ -41,15 +71,46 @@ const Header = ({ onCtaClick }: HeaderProps) => {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block ml-6 lg:ml-8">
-            <Button 
-              onClick={onCtaClick}
-              variant="cta"
-              className="px-4 lg:px-6 text-sm lg:text-base"
-            >
-              ¡Comienza Hoy Sin Internet!
-            </Button>
+          {/* Desktop CTA and Auth */}
+          <div className="hidden md:flex items-center space-x-4 ml-6 lg:ml-8">
+            {user ? (
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
+                  <User className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    {user.email?.split('@')[0]}
+                  </span>
+                </div>
+                <Button 
+                  onClick={handleLogout}
+                  variant="outline"
+                  size="sm"
+                  className="text-sm"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Salir
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Button 
+                  onClick={() => setIsAuthModalOpen(true)}
+                  variant="outline"
+                  size="sm"
+                  className="text-sm"
+                >
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Admin
+                </Button>
+                <Button 
+                  onClick={onCtaClick}
+                  variant="cta"
+                  className="px-4 lg:px-6 text-sm lg:text-base"
+                >
+                  ¡Comienza Hoy Sin Internet!
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -83,22 +144,61 @@ const Header = ({ onCtaClick }: HeaderProps) => {
                   {item.name}
                 </a>
               ))}
-              <div className="px-3 py-2">
-                <Button 
-                  onClick={() => {
-                    onCtaClick();
-                    setIsMenuOpen(false);
-                  }}
-                  variant="cta"
-                  className="w-full"
-                >
-                  ¡Comienza Hoy!
-                </Button>
+              <div className="px-3 py-2 space-y-2">
+                {user ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 px-3 py-2 text-sm text-muted-foreground">
+                      <User className="h-4 w-4" />
+                      <span>{user.email?.split('@')[0]}</span>
+                    </div>
+                    <Button 
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Salir
+                    </Button>
+                  </div>
+                ) : (
+                  <>
+                    <Button 
+                      onClick={() => {
+                        setIsAuthModalOpen(true);
+                        setIsMenuOpen(false);
+                      }}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      <LogIn className="h-4 w-4 mr-2" />
+                      Admin
+                    </Button>
+                    <Button 
+                      onClick={() => {
+                        onCtaClick();
+                        setIsMenuOpen(false);
+                      }}
+                      variant="cta"
+                      className="w-full"
+                    >
+                      ¡Comienza Hoy!
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
         )}
       </div>
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </header>
   );
 };
