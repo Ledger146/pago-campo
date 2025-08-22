@@ -42,17 +42,27 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }: AuthModalProps) => {
 
       if (data.user) {
         // Check if user is admin
-        const { data: profile } = await supabase
+        const { data: profile, error: profileError } = await supabase
           .from('profiles')
           .select('role')
           .eq('id', data.user.id)
           .single();
 
-        if (profile?.role !== 'admin') {
+        if (profileError) {
+          await supabase.auth.signOut();
+          toast({
+            title: "Error de perfil",
+            description: "No se pudo verificar el perfil del usuario. Es posible que no tengas un perfil de administrador configurado.",
+            variant: "destructive"
+          });
+          return;
+        }
+
+        if (!profile || profile.role !== 'admin') {
           await supabase.auth.signOut();
           toast({
             title: "Acceso denegado",
-            description: "Solo los administradores pueden acceder al panel.",
+            description: `Tu rol actual es "${profile?.role || 'sin rol'}". Solo los usuarios con rol "admin" pueden acceder al panel de administración.`,
             variant: "destructive"
           });
           return;
