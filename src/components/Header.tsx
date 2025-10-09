@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Leaf, LogIn, User, LogOut } from "lucide-react";
+import { Menu, X, LogIn, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 import AuthModal from "./AuthModal";
+import logo from "@/assets/logo-pagocampo.png";
 
 interface HeaderProps {
   onCtaClick: () => void;
@@ -17,8 +18,9 @@ const Header = ({ onCtaClick }: HeaderProps) => {
   const navigation = [
     { name: "Beneficios", href: "#beneficios" },
     { name: "Cómo Funciona", href: "#como-funciona" },
-    { name: "Testimonios", href: "#testimonios" },
-    { name: "Preguntas Frecuentes", href: "#faq" },
+    { name: "Transparencia", href: "#transparencia" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Contacto", href: "#footer" },
   ];
 
   useEffect(() => {
@@ -51,12 +53,9 @@ const Header = ({ onCtaClick }: HeaderProps) => {
       <div className="container-max">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-primary" />
-            <span className="text-xl lg:text-2xl font-bold text-foreground">
-              PagoCampo
-            </span>
-          </div>
+          <a href="#" className="flex items-center">
+            <img src={logo} alt="PagoCampo" className="h-10" />
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">

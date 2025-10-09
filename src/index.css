@@ -8,92 +8,93 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* PagoCampo Design System Colors */
-    --background: 44 73% 96%;  /* Blanco Crema #FDF9F2 */
-    --foreground: 0 0% 20%;    /* Texto principal oscuro */
-
-    --card: 44 73% 96%;
-    --card-foreground: 0 0% 20%;
-
-    --popover: 44 73% 96%;
-    --popover-foreground: 0 0% 20%;
-
-    --primary: 108 49% 37%;     /* Verde Tierra #3C8D2F */
-    --primary-foreground: 44 73% 96%;
-    --cta-button: 14 88% 56%; /* #FF5722 */
-    --cta-button-foreground: 0 0% 100%;
-
-    --secondary: 47 100% 48%;   /* Amarillo Maíz #F5B600 */
-    --secondary-foreground: 0 0% 20%;
-
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;  /* Gris Suave #666666 */
-
-    --accent: 20 47% 29%;       /* Marrón Cacao #6B3E26 */
-    --accent-foreground: 44 73% 96%;
-
+    /* Nuevo sistema de colores PagoCampo con blockchain */
+    --background: 0 0% 100%;
+    --foreground: 180 79% 10%; /* Casi negro con toque verde oscuro #052D2C */
+    --card: 0 0% 100%;
+    --card-foreground: 180 79% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 79% 10%;
+    
+    /* Verde brillante principal - #0DF205 */
+    --primary: 118 96% 50%;
+    --primary-foreground: 180 79% 10%;
+    
+    /* Verde intermedio - #55BF24 */
+    --secondary: 93 66% 44%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Verde suave - #4DA624 */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 180 40% 30%;
+    
+    /* Acento verde intermedio */
+    --accent: 93 66% 44%;
+    --accent-foreground: 0 0% 100%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 44 73% 96%;
-
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 108 49% 37%;
-
-    --radius: 0.5rem;
-
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 118 96% 50%;
+    --radius: 1rem;
+    --chart-1: 118 96% 50%;
+    --chart-2: 93 66% 44%;
+    --chart-3: 92 63% 40%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
+    --sidebar-foreground: 180 79% 10%;
+    --sidebar-primary: 118 96% 50%;
+    --sidebar-primary-foreground: 180 79% 10%;
+    --sidebar-accent: 93 66% 44%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 118 96% 50%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    /* Fondo oscuro primario - #052D2C */
+    --background: 180 79% 10%;
+    --foreground: 0 0% 98%;
+    --card: 180 70% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 180 79% 10%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Verde brillante - #0DF205 */
+    --primary: 118 96% 50%;
+    --primary-foreground: 180 79% 10%;
+    
+    /* Verde intermedio - #55BF24 */
+    --secondary: 93 66% 44%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 180 40% 20%;
+    --muted-foreground: 0 0% 70%;
+    
+    /* Verde intermedio para acentos */
+    --accent: 93 66% 44%;
+    --accent-foreground: 0 0% 100%;
+    
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 180 40% 20%;
+    --input: 180 40% 20%;
+    --ring: 118 96% 50%;
+    --chart-1: 118 96% 50%;
+    --chart-2: 93 66% 44%;
+    --chart-3: 92 63% 40%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 180 79% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 118 96% 50%;
+    --sidebar-primary-foreground: 180 79% 10%;
+    --sidebar-accent: 93 66% 44%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 180 40% 20%;
+    --sidebar-ring: 118 96% 50%;
   }
 }
 

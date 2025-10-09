@@ -8,28 +8,28 @@ import {
 const FAQ = () => {
   const faqs = [
     {
-      question: "¿Necesito internet para usar la app?",
-      answer: "No. Solo necesitas señal para enviar y recibir mensajes de texto (SMS). PagoCampo funciona completamente sin conexión a internet.",
+      question: "¿Necesito internet para usar PagoCampo?",
+      answer: "No, solo necesitas señal de celular para mandar o recibir SMS.",
+    },
+    {
+      question: "¿Qué es blockchain y por qué lo usan?",
+      answer: "Es como un cuaderno digital que nadie puede borrar. Cada pago se anota ahí y queda seguro para siempre.",
+    },
+    {
+      question: "¿Voy a ver cosas raras como códigos o direcciones largas?",
+      answer: "No. Tú solo recibirás un SMS claro con tu confirmación. Los detalles técnicos quedan guardados automáticamente.",
+    },
+    {
+      question: "¿Qué pasa si pierdo mi celular?",
+      answer: "Tu historial de pagos queda guardado. Con tu número puedes recuperar tus comprobantes.",
     },
     {
       question: "¿Qué tipo de celular necesito?",
       answer: "Funciona con cualquier celular que pueda enviar SMS, incluso los más sencillos. No necesitas un smartphone moderno.",
     },
     {
-      question: "¿Es seguro?",
-      answer: "Sí. Cada código tiene un tiempo de uso y confirmación. Nadie más puede usarlo. Además, ambas partes deben confirmar la transacción.",
-    },
-    {
-      question: "¿A quién puedo pagar con PagoCampo?",
-      answer: "A cualquier persona que tenga un número móvil y esté registrada en el sistema: proveedores, clientes o familiares.",
-    },
-    {
-      question: "¿Hay límites en los montos que puedo enviar?",
-      answer: "Puedes enviar desde S/ 10 hasta S/ 50,000 por transacción. Para montos mayores, puedes hacer múltiples envíos.",
-    },
-    {
       question: "¿Cuánto cuesta usar PagoCampo?",
-      answer: "Los primeros 5 pagos son gratis. Después, cobramos una pequeña comisión de 1.5% por transacción, mucho menor que otros servicios. Por ejemplo: si envías S/ 50,000, pagas solo S/ 750 de comisión.",
+      answer: "Los primeros 5 pagos son gratis. Después, cobramos una pequeña comisión de 1.5% por transacción, mucho menor que otros servicios.",
     },
   ];
 

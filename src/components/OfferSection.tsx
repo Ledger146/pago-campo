@@ -39,14 +39,14 @@ const OfferSection = ({ onCtaClick }: OfferSectionProps) => {
                 Oferta Especial de Lanzamiento
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                Regístrate <span className="text-primary">gratis</span> y recibe
+                Únete a cientos de agricultores que ya cobran 
                 <br />
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  beneficios exclusivos
+                  sin efectivo y con confianza total
                 </span>
               </h2>
               <p className="text-xl text-muted-foreground font-medium">
-                ¡Solo por tiempo limitado para los primeros agricultores!
+                Pagos seguros con blockchain, explicado simple
               </p>
             </div>
 
@@ -74,7 +74,7 @@ const OfferSection = ({ onCtaClick }: OfferSectionProps) => {
                   size="lg"
                   className="relative font-bold text-2xl px-16 py-8 h-auto rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
                 >
-                  🌾 Empieza con PagoCampo hoy
+                  📲 Quiero usar PagoCampo
                 </Button>
               </div>
               <div className="bg-background/80 rounded-lg p-4 border border-primary/20">

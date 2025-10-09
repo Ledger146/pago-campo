@@ -18,6 +18,7 @@ import VideoSection from "@/components/VideoSection";
 import ExpandedUseCases from "@/components/ExpandedUseCases";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import CalendarEmbed from "@/components/CalendarEmbed";
+import BlockchainTransparency from "@/components/BlockchainTransparency";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +44,7 @@ const Index = () => {
         <SolutionSection />
         <ExpandedUseCases />
         <Differentiators />
+        <BlockchainTransparency />
         <ComparisonTable />
         <Testimonials />
         <NewsletterSignup />

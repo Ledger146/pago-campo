@@ -8,24 +8,24 @@ import carlosMendozaAvatar from '@/assets/carlos-mendoza-avatar.jpg';
 const testimonials = [
   {
     name: "Don Segundo",
-    role: "Productor de cacao en Satipo",
+    role: "Agricultor de cacao",
     avatar: donSegundoAvatar,
     rating: 5,
-    text: "Antes llevaba 200 mil soles en una bolsa… ahora con PagoCampo todo es más seguro.",
+    text: "Antes me daba miedo que me paguen con efectivo. Ahora recibo un mensaje en mi celular y sé que el pago es seguro.",
   },
   {
     name: "María Luz",
-    role: "Caficultora en Jaén",
+    role: "Caficultora",
     avatar: mariaLuzAvatar,
     rating: 5,
-    text: "No necesito ir al banco. Pago a mis proveedores desde mi celular.",
+    text: "No entiendo mucho de tecnología, pero sí entiendo que ahora no me estafan con los pagos.",
   },
   {
     name: "Carlos Mendoza",
-    role: "Agricultor en Huánuco",
+    role: "Productor agrícola",
     avatar: carlosMendozaAvatar,
     rating: 5,
-    text: "Mi familia ya no se preocupa cuando voy a vender la cosecha. PagoCampo nos da tranquilidad.",
+    text: "Mi familia ya no se preocupa cuando voy a vender la cosecha. Todo queda registrado de forma segura.",
   },
 ];
 

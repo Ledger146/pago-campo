@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 const ValueProposition = () => {
   const benefits = [
     {
+      icon: WifiOff,
+      title: "Funciona sin internet, solo SMS",
+      description: "No necesitas señal 4G ni WiFi. Cualquier celular sirve.",
+    },
+    {
       icon: Shield,
-      title: "Seguridad total",
+      title: "Más seguro que llevar efectivo",
       description: "Ya no arriesgues tu vida transportando grandes sumas de dinero.",
     },
     {
-      icon: WifiOff,
-      title: "Sin internet, sin problema",
-      description: "Funciona solo con SMS desde cualquier celular.",
-    },
-    {
       icon: Zap,
-      title: "Pagos fáciles y rápidos",
-      description: "A proveedores, clientes y más, sin salir del campo.",
+      title: "Recibos digitales imposibles de falsificar",
+      description: "Cada transacción queda registrada en blockchain de forma automática.",
     },
   ];
 

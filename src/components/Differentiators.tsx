@@ -1,27 +1,35 @@
-import { Tractor, Lock, Users } from "lucide-react";
+import { MessageSquare, Shield, FileCheck } from "lucide-react";
 
 const Differentiators = () => {
   const differentiators = [
     {
-      icon: Tractor,
-      title: "🚜 Hecho para el campo",
-      description: "No necesitas señal 4G ni WiFi. Solo SMS.",
+      icon: MessageSquare,
+      title: "El agricultor manda un SMS",
+      description: "Con el monto y código único.",
     },
     {
-      icon: Lock,
-      title: "🔐 Seguro y confiable",
-      description: "Código único para cada transacción, validado por ambos lados.",
+      icon: Shield,
+      title: "El sistema confirma y genera recibo",
+      description: "El recibo digital se guarda en blockchain automáticamente.",
     },
     {
-      icon: Users,
-      title: "🤝 Apoya a tu comunidad",
-      description: "Reduce los riesgos para todos en la cadena agrícola.",
+      icon: FileCheck,
+      title: "Confirmación en segundos",
+      description: "Ambas partes reciben un mensaje claro con la confirmación.",
     },
   ];
 
   return (
-    <section className="section-padding bg-primary/5">
+    <section id="como-funciona" className="section-padding bg-primary/5">
       <div className="container-max">
+        <div className="text-center space-y-4 mb-16 fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            ¿Cómo Funciona?
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Un proceso simple explicado en lenguaje claro
+          </p>
+        </div>
         <div className="grid md:grid-cols-3 gap-8">
           {differentiators.map((item, index) => (
             <div 

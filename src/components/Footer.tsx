@@ -1,4 +1,5 @@
-import { Leaf, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react";
+import logo from "@/assets/logo-pagocampo.png";
 
 const Footer = () => {
   const socialLinks = [
@@ -19,12 +20,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8" />
-              <span className="text-2xl font-bold">PagoCampo</span>
+            <div className="flex items-center">
+              <img src={logo} alt="PagoCampo" className="h-12" />
             </div>
             <p className="text-accent-foreground/80 leading-relaxed">
-              Conectando al campo con seguridad. Pagos seguros sin internet para agricultores de todo el Perú.
+              PagoCampo — Seguridad y confianza para tu café y cacao.
             </p>
           </div>
 
