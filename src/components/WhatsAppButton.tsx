@@ -43,7 +43,7 @@ const WhatsAppButton = () => {
       : " Me interesa conocer más sobre PagoCampo.";
     
     const fullMessage = encodeURIComponent(greeting + inquiry);
-    const phoneNumber = "51999999999"; // Cambiar por el número real
+    const phoneNumber = "51992002255";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${fullMessage}`;
     
     window.open(whatsappUrl, '_blank');

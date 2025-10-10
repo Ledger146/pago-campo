@@ -53,8 +53,8 @@ const Header = ({ onCtaClick }: HeaderProps) => {
       <div className="container-max">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center">
-            <img src={logo} alt="PagoCampo" className="h-10" />
+          <a href="#" className="flex items-center mr-8">
+            <img src={logo} alt="PagoCampo Logo" className="h-12 w-auto" />
           </a>
 
           {/* Desktop Navigation */}

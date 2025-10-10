@@ -21,7 +21,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img src={logo} alt="PagoCampo" className="h-12" />
+              <img src={logo} alt="PagoCampo Logo" className="h-16 w-auto" />
             </div>
             <p className="text-accent-foreground/80 leading-relaxed">
               PagoCampo — Seguridad y confianza para tu café y cacao.
@@ -34,7 +34,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5" />
-                <span>📞 0800-123-456</span>
+                <span>📞 992002255</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5" />

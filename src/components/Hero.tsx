@@ -37,7 +37,7 @@ const Hero = ({ onCtaClick }: HeroProps) => {
                 onClick={onCtaClick}
                 variant="cta"
                 size="lg"
-                className="text-lg px-8 py-6 h-auto shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="text-lg px-8 py-6 h-auto shadow-2xl transform hover:scale-105 transition-all duration-300 bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Smartphone className="mr-2 h-6 w-6" />
                 📲 Empieza hoy mismo
@@ -72,7 +72,7 @@ const Hero = ({ onCtaClick }: HeroProps) => {
                     ¡Pago exitoso!
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    S/ 1,250.00 transferido
+                    S/ 20,000 Transferido
                   </p>
                 </div>
               </div>
