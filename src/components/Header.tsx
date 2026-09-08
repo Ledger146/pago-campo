@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, LogIn, User, LogOut } from "lucide-react";
+import { Menu, X, LogIn, User, LogOut, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { User as SupabaseUser } from "@supabase/supabase-js";
@@ -24,12 +24,10 @@ const Header = ({ onCtaClick }: HeaderProps) => {
   ];
 
   useEffect(() => {
-    // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setUser(session?.user ?? null);
@@ -40,7 +38,6 @@ const Header = ({ onCtaClick }: HeaderProps) => {
   }, []);
 
   const handleAuthSuccess = () => {
-    // User is now logged in
     setIsAuthModalOpen(false);
   };
 
@@ -48,16 +45,18 @@ const Header = ({ onCtaClick }: HeaderProps) => {
     await supabase.auth.signOut();
   };
 
+  const openMvp = () => {
+    window.location.href = "/mvp";
+  };
+
   return (
     <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       <div className="container-max">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <a href="#" className="flex items-center mr-8">
             <img src={logo} alt="PagoCampo Logo" className="h-12 w-auto" />
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navigation.map((item) => (
               <a
@@ -70,8 +69,11 @@ const Header = ({ onCtaClick }: HeaderProps) => {
             ))}
           </nav>
 
-          {/* Desktop CTA and Auth */}
-          <div className="hidden md:flex items-center space-x-4 ml-6 lg:ml-8">
+          <div className="hidden md:flex items-center space-x-3 ml-6 lg:ml-8">
+            <Button onClick={openMvp} variant="outline" size="sm" className="text-sm">
+              <PlayCircle className="h-4 w-4 mr-2" />
+              Probar MVP
+            </Button>
             {user ? (
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2">
@@ -80,56 +82,31 @@ const Header = ({ onCtaClick }: HeaderProps) => {
                     {user.email?.split('@')[0]}
                   </span>
                 </div>
-                <Button 
-                  onClick={handleLogout}
-                  variant="outline"
-                  size="sm"
-                  className="text-sm"
-                >
+                <Button onClick={handleLogout} variant="outline" size="sm" className="text-sm">
                   <LogOut className="h-4 w-4 mr-2" />
                   Salir
                 </Button>
               </div>
             ) : (
               <>
-                <Button 
-                  onClick={() => setIsAuthModalOpen(true)}
-                  variant="outline"
-                  size="sm"
-                  className="text-sm"
-                >
+                <Button onClick={() => setIsAuthModalOpen(true)} variant="outline" size="sm" className="text-sm">
                   <LogIn className="h-4 w-4 mr-2" />
                   Admin
                 </Button>
-                <Button 
-                  onClick={onCtaClick}
-                  variant="cta"
-                  className="px-4 lg:px-6 text-sm lg:text-base"
-                >
+                <Button onClick={onCtaClick} variant="cta" className="px-4 lg:px-6 text-sm lg:text-base">
                   ¡Comienza Hoy Sin Internet!
                 </Button>
               </>
             )}
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2"
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2">
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -144,45 +121,28 @@ const Header = ({ onCtaClick }: HeaderProps) => {
                 </a>
               ))}
               <div className="px-3 py-2 space-y-2">
+                <Button onClick={() => { openMvp(); setIsMenuOpen(false); }} variant="outline" className="w-full">
+                  <PlayCircle className="h-4 w-4 mr-2" />
+                  Probar MVP
+                </Button>
                 {user ? (
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2 px-3 py-2 text-sm text-muted-foreground">
                       <User className="h-4 w-4" />
                       <span>{user.email?.split('@')[0]}</span>
                     </div>
-                    <Button 
-                      onClick={() => {
-                        handleLogout();
-                        setIsMenuOpen(false);
-                      }}
-                      variant="outline"
-                      className="w-full"
-                    >
+                    <Button onClick={() => { handleLogout(); setIsMenuOpen(false); }} variant="outline" className="w-full">
                       <LogOut className="h-4 w-4 mr-2" />
                       Salir
                     </Button>
                   </div>
                 ) : (
                   <>
-                    <Button 
-                      onClick={() => {
-                        setIsAuthModalOpen(true);
-                        setIsMenuOpen(false);
-                      }}
-                      variant="outline"
-                      className="w-full"
-                    >
+                    <Button onClick={() => { setIsAuthModalOpen(true); setIsMenuOpen(false); }} variant="outline" className="w-full">
                       <LogIn className="h-4 w-4 mr-2" />
                       Admin
                     </Button>
-                    <Button 
-                      onClick={() => {
-                        onCtaClick();
-                        setIsMenuOpen(false);
-                      }}
-                      variant="cta"
-                      className="w-full"
-                    >
+                    <Button onClick={() => { onCtaClick(); setIsMenuOpen(false); }} variant="cta" className="w-full">
                       ¡Comienza Hoy!
                     </Button>
                   </>
@@ -192,12 +152,8 @@ const Header = ({ onCtaClick }: HeaderProps) => {
           </div>
         )}
       </div>
-      
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onAuthSuccess={handleAuthSuccess}
-      />
+
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} onAuthSuccess={handleAuthSuccess} />
     </header>
   );
 };
