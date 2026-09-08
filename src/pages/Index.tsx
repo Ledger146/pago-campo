@@ -1,61 +1,45 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import SectionGuide from "@/components/SectionGuide";
+import MvpShowcase from "@/components/MvpShowcase";
+import TrustCounter from "@/components/TrustCounter";
 import ValueProposition from "@/components/ValueProposition";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
+import PaymentDemo from "@/components/PaymentDemo";
+import ExpandedUseCases from "@/components/ExpandedUseCases";
 import Differentiators from "@/components/Differentiators";
 import ComparisonTable from "@/components/ComparisonTable";
-import Testimonials from "@/components/Testimonials";
 import OfferSection from "@/components/OfferSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LeadModal from "@/components/LeadModal";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import TrustCounter from "@/components/TrustCounter";
-import PaymentDemo from "@/components/PaymentDemo";
-import VideoSection from "@/components/VideoSection";
-import ExpandedUseCases from "@/components/ExpandedUseCases";
-import NewsletterSignup from "@/components/NewsletterSignup";
-import CalendarEmbed from "@/components/CalendarEmbed";
-import BlockchainTransparency from "@/components/BlockchainTransparency";
-import MvpShowcase from "@/components/MvpShowcase";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCtaClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div className="min-h-screen bg-background">
-      <Header onCtaClick={handleCtaClick} />
+      <Header onCtaClick={() => setIsModalOpen(true)} />
+      <SectionGuide />
       <main>
-        <Hero onCtaClick={handleCtaClick} />
+        <Hero onCtaClick={() => setIsModalOpen(true)} />
         <MvpShowcase />
         <TrustCounter />
         <ValueProposition />
-        <VideoSection />
-        <PaymentDemo />
         <ProblemSection />
         <SolutionSection />
+        <PaymentDemo />
         <ExpandedUseCases />
         <Differentiators />
-        <BlockchainTransparency />
         <ComparisonTable />
-        <Testimonials />
-        <NewsletterSignup />
-        <CalendarEmbed />
-        <OfferSection onCtaClick={handleCtaClick} />
+        <OfferSection onCtaClick={() => setIsModalOpen(true)} />
         <FAQ />
       </main>
       <Footer />
-      <LeadModal isOpen={isModalOpen} onClose={handleModalClose} />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <WhatsAppButton />
     </div>
   );
