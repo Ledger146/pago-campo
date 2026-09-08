@@ -19,6 +19,7 @@ import ExpandedUseCases from "@/components/ExpandedUseCases";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import CalendarEmbed from "@/components/CalendarEmbed";
 import BlockchainTransparency from "@/components/BlockchainTransparency";
+import MvpShowcase from "@/components/MvpShowcase";
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,6 +37,7 @@ const Index = () => {
       <Header onCtaClick={handleCtaClick} />
       <main>
         <Hero onCtaClick={handleCtaClick} />
+        <MvpShowcase />
         <TrustCounter />
         <ValueProposition />
         <VideoSection />
