@@ -2,36 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Nuevo sistema de colores PagoCampo con blockchain */
     --background: 0 0% 100%;
-    --foreground: 180 79% 10%; /* Casi negro con toque verde oscuro #052D2C */
+    --foreground: 180 79% 10%;
     --card: 0 0% 100%;
     --card-foreground: 180 79% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 180 79% 10%;
-    
-    /* Verde brillante principal - #0DF205 */
     --primary: 118 96% 50%;
     --primary-foreground: 180 79% 10%;
-    
-    /* Verde intermedio - #55BF24 */
     --secondary: 93 66% 44%;
     --secondary-foreground: 0 0% 100%;
-    
-    /* Verde suave - #4DA624 */
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 180 40% 30%;
-    
-    /* Acento verde intermedio */
     --accent: 93 66% 44%;
     --accent-foreground: 0 0% 100%;
-    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
@@ -52,31 +38,21 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 118 96% 50%;
   }
-
   .dark {
-    /* Fondo oscuro primario - #052D2C */
     --background: 180 79% 10%;
     --foreground: 0 0% 98%;
     --card: 180 70% 12%;
     --card-foreground: 0 0% 98%;
     --popover: 180 79% 10%;
     --popover-foreground: 0 0% 98%;
-    
-    /* Verde brillante - #0DF205 */
     --primary: 118 96% 50%;
     --primary-foreground: 180 79% 10%;
-    
-    /* Verde intermedio - #55BF24 */
     --secondary: 93 66% 44%;
     --secondary-foreground: 0 0% 100%;
-    
     --muted: 180 40% 20%;
     --muted-foreground: 0 0% 70%;
-    
-    /* Verde intermedio para acentos */
     --accent: 93 66% 44%;
     --accent-foreground: 0 0% 100%;
-    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
     --border: 180 40% 20%;
@@ -99,59 +75,20 @@ All colors MUST be HSL.
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Libre Franklin', system-ui, -apple-system, sans-serif;
-  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Libre Franklin', system-ui, -apple-system, sans-serif; }
+  section[id], footer[id] { scroll-margin-top: 9.5rem; }
 }
 
 @layer utilities {
-  /* PagoCampo Custom Animations */
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-  }
-  
-  .fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-  
-  .hero-gradient {
-    background: linear-gradient(135deg, hsl(108 49% 37%) 0%, hsl(108 49% 30%) 100%);
-  }
-  
-  .section-padding {
-    @apply py-16 px-4 md:py-24 md:px-6;
-  }
-  
-  .container-max {
-    @apply max-w-6xl mx-auto;
-  }
+  .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+  .fade-in { animation: fadeIn 0.5s ease-out; }
+  .hero-gradient { background: linear-gradient(135deg, hsl(108 49% 37%) 0%, hsl(108 49% 30%) 100%); }
+  .section-padding { @apply py-16 px-4 md:py-24 md:px-6; }
+  .container-max { @apply max-w-6xl mx-auto; }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
